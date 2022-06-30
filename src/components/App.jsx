@@ -4,44 +4,35 @@ import Statistics from './Statistics/Statistics';
 import FeedbackOptions from './FeedbackOptions/FeedbackOptions';
 import s from './App.module.css';
 
-const useFeedback = (defaultValue = 0) => {
-  const [state, setState] = useState(() => {
-    return defaultValue;
-  });
-  return [state, setState];
-};
+// const useFeedback = (defaultValue = 0) => {
+//   const [state, setState] = useState(() => {
+//     return defaultValue;
+//   });
+//   return [state, setState];
+// };
 
 export default function App() {
-  const [good, setGood] = useFeedback(0);
-  const [neutral, setNeutral] = useFeedback(0);
-  const [bad, setBad] = useFeedback(0);
-
-  let total = useRef(0);
-  let percentageCount = useRef(0);
+  const [state, setState] = useState({good:0, neutral:0, bad:0});
+  const [total, setTotal] = useState(0);
+  const [percentageCount, setPercentageCount] = useState(0);
 
   useEffect(() => {
-    total.current = good + neutral + bad;
+    setTotal(good + neutral + bad);
   }, [good, neutral, bad]);
 
   useEffect(() => {
-    percentageCount.current = 100 - (bad / (good + bad + neutral)) * 100;
+    setPercentageCount(100 - (bad / (good + bad + neutral)) * 100);
   }, [good, neutral, bad]);
 
   return (
     <div className={s.container}>
       <Section title={'Please leave feedback'}>
         <FeedbackOptions
-          good={good}
-          neutral={neutral}
-          bad={bad}
-          setGood={setGood}
-          setNeutral={setNeutral}
-          setBad={setBad}
+          state={state}
+          setState={setState}
         />
         <Statistics
-          good={good}
-          neutral={neutral}
-          bad={bad}
+          state={state}
           total={total}
           percentageCount={percentageCount}
         />

@@ -2,36 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import s from './Feedback.module.css';
 
-const FeedbackOptions = ({
-  good,
-  neutral,
-  bad,
-  setGood,
-  setNeutral,
-  setBad,
-}) => {
+const FeedbackOptions = ({state , setState}) => {
   return (
     <div>
       <button
         type="button"
         className={s.button}
-        onClick={() => setGood(good + 1)}
+        onClick={() => setState(state + 1)}
       >
-        Good
-      </button>
-      <button
-        type="button"
-        className={s.button}
-        onClick={() => setNeutral(neutral + 1)}
-      >
-        Neitral
-      </button>
-      <button
-        type="button"
-        className={s.button}
-        onClick={() => setBad(bad + 1)}
-      >
-        Bad
+        {state.name}
       </button>
     </div>
   );
