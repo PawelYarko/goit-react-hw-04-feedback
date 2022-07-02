@@ -9,13 +9,9 @@ const FeedbackOptions = ({options , onLeaveFeedback}) => {
     )   
 };
 
-// FeedbackOptions.propTypes = {
-//   good: PropTypes.number.isRequired,
-//   neutral: PropTypes.number.isRequired,
-//   bad: PropTypes.number.isRequired,
-//   setGood: PropTypes.func.isRequired,
-//   setNeutral: PropTypes.func.isRequired,
-//   setBad: PropTypes.func.isRequired,
-// };
+FeedbackOptions.propTypes = {
+  options: PropTypes.arrayOf(PropTypes.string.isRequired),
+  onLeaveFeedback: PropTypes.func.isRequired,
+};
 
 export default FeedbackOptions;
